@@ -7,7 +7,7 @@ function bookList(books) {
         let title = document.createElement("h6")
 
         let flipCard = document.createElement("div")
-        flipCard.setAttribute("class", " flip-card  col-sm-4")
+        flipCard.setAttribute("class", " flip-card  col-sm-3")
 
         let flipCardInner = document.createElement("div");
         flipCardInner.setAttribute("class", "flip-card-inner")
