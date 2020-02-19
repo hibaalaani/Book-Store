@@ -14,7 +14,8 @@ function bookFetch(url) {
             console.log(books)
             bookList(books)
             createEvent()
-            //searchBottun(books)
+            // createMoreInfo()
+            searchBottun(books)
         })
         .catch((error) => {
             console.error('Error:', error);

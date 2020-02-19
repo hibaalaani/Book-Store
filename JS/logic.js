@@ -1,90 +1,124 @@
 function bookList(books) {
-    var divRow = document.getElementById("insertBook")
-    divRow.innerHTML = ""
+    var divRow = document.getElementById("insertBook");
+    divRow.innerHTML = "";
+    console.log("in booklist func")
     for (var i = 0; i < books.length; i++) {
-        // let divCol = document.createElement("div")
-        let img = document.createElement("img")
-        let title = document.createElement("h6")
+        let img = document.createElement("img");
+        let title = document.createElement("h6");
 
-        let flipCard = document.createElement("div")
-        flipCard.setAttribute("class", " flip-card  col-sm-3")
+        let flipCard = document.createElement("div");
+        flipCard.setAttribute("class", " flip-card  col-md-2,5");
 
         let flipCardInner = document.createElement("div");
-        flipCardInner.setAttribute("class", "flip-card-inner")
-
+        flipCardInner.setAttribute("class", "flip-card-inner");
         let flipCardFront = document.createElement("div");
-        flipCardFront.setAttribute("class", "flip-card-front")
+        flipCardFront.setAttribute("class", "flip-card-front");
         title.innerHTML = books[i].title;
-        flipCardFront.appendChild(title);
-
-        img.setAttribute("src", books[i].cover)
-        flipCardFront.appendChild(img)
-        img.setAttribute("class", "img")
+        title.setAttribute("class", "m-2")
+        img.setAttribute("src", books[i].cover);
+        flipCardFront.appendChild(img);
+        img.setAttribute("class", "img");
+        //back side inner
         let flipCardBack = document.createElement("div");
         flipCardBack.setAttribute("class", "flip-card-back");
 
-        var backDescription = document.createElement("p")
-        backDescription.innerHTML = books[i].description
-        flipCardBack.appendChild(backDescription)
+        var backDescription = document.createElement("p");
+        backDescription.innerHTML = books[i].description;
 
+        ////////////button for more info
+        var button = document.createElement("button");
+        button.innerHTML = "More Info";
+        button.setAttribute("class", "buttonMoreInfo");
 
-        flipCardInner.appendChild(flipCardFront)
-        flipCardInner.appendChild(flipCardBack)
+        button.setAttribute("id", books[i].detail)
+        button.addEventListener("click", e => {
+
+            console.log(e)
+            createMoreInfo(e.target.id)
+        })
+
+        flipCardBack.appendChild(title);
+        flipCardBack.appendChild(backDescription);
+        flipCardBack.appendChild(button);
+        flipCardInner.appendChild(flipCardFront);
+        flipCardInner.appendChild(flipCardBack);
         flipCard.appendChild(flipCardInner);
         divRow.appendChild(flipCard);
-
-        // divRow.appendChild(divCol)
-        // divCol.appendChild(flipCard)
-        // divCol.setAttribute("class", "col-sm-4")
-        // img.innerHTML = books[i].img
-        // divCol.setAttribute("class", "card  col-sm-4 flip-card-inner ")
-        // li.style = "width: 18rem";
-
-        // img.setAttribute("class", "card-img-top flip-card-front ")
-        // divCol.appendChild(img)
-
-
-        // title.setAttribute("class", "card-title flip-card-front  ")
-        // divCol.appendChild(title)
-
-
-        // var divBack = document.createElement("div")
-        // var backTitle = document.createElement("h6")
-
-        // backTitle.innerHTML = books[i].title
-        // divBack.appendChild(backTitle)
-        // divBack.appendChild(backDescription)
-        //img.appendChild(divBack)
-        // divCol.appendChild(divBack)
-        // divRow.appendChild(divCol)
-        // flipCard.appendChild(divRow)
-        // flipCard.appendChild(divCol)
-
     }
+}
+
+function createMoreInfo(imageUrl) {
+
+    var modalRow = document.getElementById("modal");
+    var modal = document.createElement("div")
+    modal.setAttribute("class", "my-modal")
+    var modalContent = document.createElement("div")
+    modalContent.setAttribute("class", "modal-content")
+    var span = document.createElement("span")
+    span.setAttribute("class", "close");
+    span.innerHTML = "";
+    var buttonClose = document.createElement("button")
+    buttonClose.setAttribute("class", "btn-primary", "m-1")
+    buttonClose.innerHTML = "Back To Book List"
+    buttonClose.addEventListener("click", () => {
+        modalRow.innerHTML = ""
+    })
+    // span.addEventListener("click", () => {
+    //     modalRow.innerHTML = ""
+    // });
+    var para = document.createElement("img")
+    para.setAttribute('src', imageUrl)
+    //para.innerHTML = books[i].detalle
+    span.appendChild(para)
+    span.appendChild(buttonClose)
+    modalContent.appendChild(span)
+    modal.appendChild(modalContent)
+
+    console.log(modalRow)
+    modalRow.appendChild(modal)
+    // }
+    console.log("hello there")
+}
+
+
+function moreInfoButton() {
+    bookInfo = []
+    for (var i = 0; i < books.length; i++) {
+        document.getElementsByClassName("buttonMoreInfo").addEventListener("click", function () {
+            if (button_target === modal_target) {
+                bookInfo.push(modal[i])
+                console.log("more info")
+                modal.style.display = "block"
+                span.onclick = function () {
+                    modal.style.display = "none"
+
+                }
+
+            }
+        })
+    }
+    bookList(bookInfo)
 }
 
 function createEvent() {
-    var input = document.getElementById('searchInput');
+    var input = document.getElementById("searchInput");
     input.addEventListener("keyup", function () {
-
-        searchBottun()
-    })
+        searchBottun();
+    });
 }
 
 function searchBottun() {
-    var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById('searchInput');
+    var input, filter;
+    input = document.getElementById("searchInput");
     filter = input.value.toUpperCase();
 
-    // ul = document.getElementById("insertBook");
-    //li = document.createElement('li');
-    var filteredBooks = []
-    for (var i = 0; i < books.length; i++) {
 
+    var filteredBooks = [];
+    for (var i = 0; i < books.length; i++) {
         if (books[i].title.toUpperCase().includes(filter)) {
-            console.log(books[i].title)
-            filteredBooks.push(books[i])
+            console.log(books[i].title);
+            filteredBooks.push(books[i]);
         }
     }
-    bookList(filteredBooks)
+    bookList(filteredBooks);
 }
