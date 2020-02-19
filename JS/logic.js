@@ -54,12 +54,12 @@ function createMoreInfo(imageUrl) {
     modal.setAttribute("class", "my-modal")
     var modalContent = document.createElement("div")
     modalContent.setAttribute("class", "modal-content")
-    var span = document.createElement("span")
-    span.setAttribute("class", "close");
-    span.innerHTML = "";
+    // var span = document.createElement("span")
+    // span.setAttribute("class", "close  bg-primary");
+    // span.innerHTML = "";
     var buttonClose = document.createElement("button")
-    buttonClose.setAttribute("class", "btn-primary", "m-1")
-    buttonClose.innerHTML = "Back To Book List"
+    buttonClose.setAttribute("class", " btn-sm btn-primary")
+    buttonClose.innerHTML = "Back To List"
     buttonClose.addEventListener("click", () => {
         modalRow.innerHTML = ""
     })
@@ -69,9 +69,14 @@ function createMoreInfo(imageUrl) {
     var para = document.createElement("img")
     para.setAttribute('src', imageUrl)
     //para.innerHTML = books[i].detalle
-    span.appendChild(para)
-    span.appendChild(buttonClose)
-    modalContent.appendChild(span)
+
+
+    // span.appendChild(para)
+    // span.appendChild(buttonClose)
+    // modalContent.appendChild(span)
+
+    modalContent.appendChild(para)
+    modalContent.appendChild(buttonClose)
     modal.appendChild(modalContent)
 
     console.log(modalRow)
@@ -81,24 +86,24 @@ function createMoreInfo(imageUrl) {
 }
 
 
-function moreInfoButton() {
-    bookInfo = []
-    for (var i = 0; i < books.length; i++) {
-        document.getElementsByClassName("buttonMoreInfo").addEventListener("click", function () {
-            if (button_target === modal_target) {
-                bookInfo.push(modal[i])
-                console.log("more info")
-                modal.style.display = "block"
-                span.onclick = function () {
-                    modal.style.display = "none"
+// function moreInfoButton() {
+//     bookInfo = []
+//     for (var i = 0; i < books.length; i++) {
+//         document.getElementsByClassName("buttonMoreInfo").addEventListener("click", function () {
+//             if (button_target === modal_target) {
+//                 bookInfo.push(modal[i])
+//                 console.log("more info")
+//                 modal.style.display = "block"
+//                 span.onclick = function () {
+//                     modal.style.display = "none"
 
-                }
+//                 }
 
-            }
-        })
-    }
-    bookList(bookInfo)
-}
+//             }
+//         })
+//     }
+//     bookList(bookInfo)
+// }
 
 function createEvent() {
     var input = document.getElementById("searchInput");
