@@ -108,3 +108,11 @@ body {
   color: #000;
 
 }
+
+.opacity {
+  /* opacity: 0.9; */
+}
+
+.modal-content {
+  opacity: 0.8;
+}

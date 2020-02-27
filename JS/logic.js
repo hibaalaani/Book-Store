@@ -68,6 +68,7 @@ function createMoreInfo(imageUrl) {
     // });
     var para = document.createElement("img")
     para.setAttribute('src', imageUrl)
+    para.setAttribute("class", "opacity")
     //para.innerHTML = books[i].detalle
 
 
@@ -86,24 +87,6 @@ function createMoreInfo(imageUrl) {
 }
 
 
-// function moreInfoButton() {
-//     bookInfo = []
-//     for (var i = 0; i < books.length; i++) {
-//         document.getElementsByClassName("buttonMoreInfo").addEventListener("click", function () {
-//             if (button_target === modal_target) {
-//                 bookInfo.push(modal[i])
-//                 console.log("more info")
-//                 modal.style.display = "block"
-//                 span.onclick = function () {
-//                     modal.style.display = "none"
-
-//                 }
-
-//             }
-//         })
-//     }
-//     bookList(bookInfo)
-// }
 
 function createEvent() {
     var input = document.getElementById("searchInput");
